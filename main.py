@@ -5,13 +5,14 @@ import shutil
 from bs4 import BeautifulSoup
 import requests
 
-from secret import COOKIE, STEAM_USERNAME, WORKSHOP_PATH
+from secret import COOKIE, STEAM_PROFILE_URL, WORKSHOP_PATH
 
-URL = 'https://steamcommunity.com/id/{0}/myworkshopfiles/?appid=107410&browsefilter=mysubscriptions&numperpage=30&p={1}'
+URL = ('{0}/myworkshopfiles/?appid=107410&'
+       'browsefilter=mysubscriptions&numperpage=30&p={1}')
 WORKSHOP_PATH = Path(WORKSHOP_PATH)
 
 def get_page(page: int) -> str:
-    url = URL.format(STEAM_USERNAME, page)
+    url = URL.format(STEAM_PROFILE_URL, page)
     print(f"Fetching {url}")
     r = requests.get(url, cookies=COOKIE)
     print(f"Status code: {r.status_code}")
@@ -54,6 +55,8 @@ def move_dirs():
             shutil.move(item.path, target_path)
 
     print(f"Moved extra items to {target_path}")
+    print("Please check the mods in the folder above and delete them to free "
+          "up space")
 
 def main():
     move_dirs()
