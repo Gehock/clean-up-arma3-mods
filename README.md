@@ -1,7 +1,8 @@
 # Cleaning up Arma 3 mods
 
-This script cleans up Arma 3 mods that are unsubscribed but still located on
-the disk.
+This script finds Arma 3 mods that are unsubscribed but still located on
+the disk. The mods get moved into a separate directory (displayed at the end
+of the script) where the user can then delete them.
 
 ## Setting up
 
